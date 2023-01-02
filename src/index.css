@@ -1,13 +1,195 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+
+:root {
+  --primary: #262837;
+  --secondary: #1f1d2c;
+  --green: #21b17d;
+  --purple: #6a69e0;
+  --orange: #fe8700;
+  --pink: #b649c7;
+  --red: #ed7374;
+  --cyan: #28a084;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  line-height: 1.5;
+  font-size: 1.8rem;
+  font-family: "Open Sans", sans-serif;
+  background-color: var(--primary);
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: clamp(3.7rem, 4vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(2.8rem, 3vw, 3.7rem);
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+h4,
+a,
+button,
+input,
+label {
+  font-size: 1.8rem;
+}
+
+h4,
+label {
+  font-weight: 700;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Settings component */
+
+.settings {
+  background-color: var(--secondary);
+  width: 100%;
+  margin: 0 auto;
+  max-width: 50rem;
+  padding: 2rem 3rem;
+}
+
+.settings h3 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.settings__group {
+  padding-bottom: 3rem;
+  margin-bottom: 1rem;
+}
+
+.settings__group label,
+h4 {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.settings__group input,
+.settings__group svg {
+  cursor: pointer;
+}
+
+.settings__group-size {
+  color: var(--green);
+  border-bottom: 2px solid var(--green);
+}
+
+.settings__group-pair {
+  color: var(--purple);
+  border-bottom: 2px solid var(--purple);
+}
+
+.color-pair-input {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.color-pair {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.color-pair div {
+  width: 2rem;
+  height: 2rem;
+}
+
+.color-pair svg {
+  margin-left: 2rem;
+}
+
+.settings__group-hover {
+  color: var(--orange);
+  border-bottom: 2px solid var(--orange);
+}
+
+.settings__group-selected {
+  color: var(--pink);
+  border-bottom: 2px solid var(--pink);
+}
+
+.settings__group-text {
+  color: var(--red);
+  border-bottom: 2px solid var(--red);
+}
+
+.btn {
+  background-color: var(--cyan);
+  color: black;
+  transition: all 0.3s linear;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  cursor: pointer;
+  border: none;
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  color: var(--cyan);
+  background-color: black;
+}
+
+/* Chessboard Size */
+
+.chessboard__grid {
+  display: grid;
+}
+.chessboard__box {
+  width: 100%;
+  height: 20rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 3.4rem;
+  transition: all 0.3s linear;
+}
+
+.chessboard__box span {
+  position: relative;
+  transform: translateY(50%);
+  opacity: 0;
+  transition: transform 0.3s linear;
+}
+
+.chessboard__box.selected span {
+  opacity: 1;
+  transform: translateY(0);
+  font-size: 4rem;
+}
+.chessboard__box:hover {
+  font-size: 4rem;
+}
+
+.chessboard__box:hover span {
+  transform: translateY(0);
+  opacity: 1;
 }
