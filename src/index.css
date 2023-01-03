@@ -61,7 +61,7 @@ label {
 .container {
   max-width: 120rem;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 2rem;
 }
 
 /* Settings component */
@@ -162,6 +162,7 @@ h4 {
 
 .chessboard__grid {
   display: grid;
+  margin-top: 3rem;
 }
 .chessboard__box {
   width: 100%;
@@ -192,4 +193,68 @@ h4 {
 .chessboard__box:hover span {
   transform: translateY(0);
   opacity: 1;
+}
+
+.btn-group .btn {
+  max-width: 40rem;
+}
+
+.modal {
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: grid;
+  place-items: center;
+}
+
+.chessboard__palette {
+  position: relative;
+  max-width: 40rem;
+  background-color: var(--secondary);
+  padding: 1rem 2rem;
+}
+
+.chessboard__palette h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.chessboard__palette .color-pair button {
+  border: none;
+  background-color: transparent;
+  color: var(--cyan);
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.chessboard__palette .color-pair button.active {
+  color: rgb(216, 186, 18);
+}
+
+.chessboard__palette .color-pair button:hover {
+  color: var(--pink);
+}
+
+.btn-toggle_palette {
+  max-width: 40rem;
+  color: white;
+  font-weight: 700;
+  background-color: var(--purple);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: white;
+  border: 2px solid var(--cyan);
+}
+
+.btn-ghost:hover {
+  background-color: var(--cyan);
+  color: black;
+  border: 2px solid transparent;
 }

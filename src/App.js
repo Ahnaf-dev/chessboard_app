@@ -1,19 +1,43 @@
 import { useState } from "react";
 import Settings from "./components/Settings";
 import Chessboard from "./components/Chessboard";
+import Modal from "./components/Modal";
 
 function App() {
   const storedSettings = JSON.parse(
     localStorage.getItem("chessboard_settings")
   );
   const [settings, setSettings] = useState(storedSettings);
+  const [openSettingModal, setOpenSettingModal] = useState(false);
+  const [currentColorPair, setCurrentColorPair] = useState(0);
 
   function renderUI() {
     if (settings) {
       return (
         <>
           <h1 style={{ textAlign: "center", margin: "3rem" }}>Chess Board</h1>
-          <Chessboard settings={settings} />
+          <div className="btn-group container">
+            <button
+              onClick={() => setOpenSettingModal(true)}
+              className="btn btn-ghost"
+            >
+              Change Settings
+            </button>
+          </div>
+          {openSettingModal && (
+            <Modal>
+              <Settings
+                setCurrentColorPair={setCurrentColorPair}
+                setOpenSettingModal={setOpenSettingModal}
+                setSettings={setSettings}
+              />
+            </Modal>
+          )}
+          <Chessboard
+            currentColorPair={currentColorPair}
+            setCurrentColorPair={setCurrentColorPair}
+            settings={settings}
+          />
         </>
       );
     } else {
@@ -27,7 +51,11 @@ function App() {
           >
             Please Set Your Default Settings For Chess Board
           </h2>
-          <Settings setSettings={setSettings} />
+          <Settings
+            setCurrentColorPair={setCurrentColorPair}
+            setOpenSettingModal={setOpenSettingModal}
+            setSettings={setSettings}
+          />
         </>
       );
     }

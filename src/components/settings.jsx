@@ -1,15 +1,29 @@
 import { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
-const Settings = ({ setSettings }) => {
+const Settings = ({
+  setSettings,
+  setOpenSettingModal,
+  setCurrentColorPair,
+}) => {
+  const storedSettings = JSON.parse(
+    localStorage.getItem("chessboard_settings")
+  );
+
   const [chessBoardSize, setChessBoardSize] = useState(10);
-  const [colorPairs, setColorPairs] = useState([]);
+  const [colorPairs, setColorPairs] = useState(
+    storedSettings?.colorPairs || []
+  );
   const [colorPair, setColorPair] = useState({
     firstPair: null,
     secondPair: null,
   });
-  const [hoverColor, setHoverColor] = useState(null);
-  const [selectedColor, setSelectedColor] = useState(null);
-  const [textColor, setTextColor] = useState(null);
+  const [hoverColor, setHoverColor] = useState(
+    storedSettings?.hoverColor || ""
+  );
+  const [selectedColor, setSelectedColor] = useState(
+    storedSettings?.selectedColor || ""
+  );
+  const [textColor, setTextColor] = useState(storedSettings?.textColor || "");
 
   const addColorPair = () => {
     if (colorPair.firstPair && colorPair.secondPair) {
@@ -39,6 +53,8 @@ const Settings = ({ setSettings }) => {
 
       localStorage.setItem("chessboard_settings", JSON.stringify(settings));
       setSettings(settings);
+      setOpenSettingModal(false);
+      setCurrentColorPair(0);
     } else {
       alert("Please fill all values");
     }
@@ -61,10 +77,11 @@ const Settings = ({ setSettings }) => {
           placeholder="1-10"
           min={1}
           max={10}
+          value={chessBoardSize}
         />
       </div>
       <div className="settings__group settings__group-pair">
-        <h4>Set Color Pair *</h4>
+        <h4>Set Color Pair * (Click + To Add)</h4>
         <div className="color-pair-input">
           <input
             onChange={(e) =>
@@ -101,6 +118,7 @@ const Settings = ({ setSettings }) => {
           onChange={(e) => setHoverColor(e.target.value)}
           type="color"
           id="hover"
+          value={hoverColor}
         />
       </div>
       <div className="settings__group settings__group-selected">
@@ -109,6 +127,7 @@ const Settings = ({ setSettings }) => {
           onChange={(e) => setSelectedColor(e.target.value)}
           type="color"
           id="selected"
+          value={selectedColor}
         />
       </div>
       <div className="settings__group settings__group-text">
@@ -117,6 +136,7 @@ const Settings = ({ setSettings }) => {
           onChange={(e) => setTextColor(e.target.value)}
           type="color"
           id="text"
+          value={textColor}
         />
       </div>
       <button type="submit" className="btn">
