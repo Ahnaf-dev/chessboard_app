@@ -25,7 +25,10 @@ const Chessboard = ({ settings, currentColorPair, setCurrentColorPair }) => {
 
         do {
           randNumber = Math.floor(Math.random() * colorPairs.length);
-        } while (randNumber === Number(storedColorPair));
+        } while (
+          randNumber === Number(storedColorPair) &&
+          colorPairs.length > 1
+        );
 
         setColorPair(randNumber);
       }
