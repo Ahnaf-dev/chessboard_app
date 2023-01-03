@@ -1,4 +1,4 @@
-# JobFishApp
+# Chess Board App
 A chessboard app where a user sets settings for chessboard size, color pairs, hover color, selection color, text color and be able to generate a dynamic chessboard based on those settings.
 
 [Live Link](https://chessboard-app-project.netlify.app/)
