@@ -55,6 +55,7 @@ const Settings = ({
       setSettings(settings);
       setOpenSettingModal(false);
       setCurrentColorPair(0);
+      localStorage.setItem("chessboard-app-pair", "0");
     } else {
       alert("Please fill all values");
     }

@@ -11,6 +11,29 @@ const Chessboard = ({ settings, currentColorPair, setCurrentColorPair }) => {
     Array(Number(chessBoardSize * chessBoardSize))
   );
 
+  const setColorPair = (num) => {
+    setCurrentColorPair(num);
+    localStorage.setItem("chessboard-app-pair", `${num}`);
+  };
+
+  useEffect(() => {
+    function setRandomPair() {
+      let storedColorPair = localStorage.getItem("chessboard-app-pair");
+
+      if (storedColorPair) {
+        let randNumber = Math.floor(Math.random() * colorPairs.length);
+
+        do {
+          randNumber = Math.floor(Math.random() * colorPairs.length);
+        } while (randNumber === Number(storedColorPair));
+
+        setColorPair(randNumber);
+      }
+    }
+
+    setRandomPair();
+  }, []);
+
   return (
     <div className="chessboard">
       <div className="container">
@@ -29,7 +52,7 @@ const Chessboard = ({ settings, currentColorPair, setCurrentColorPair }) => {
               <div style={{ backgroundColor: pair.firstPair }}></div>
               <div style={{ backgroundColor: pair.secondPair }}></div>
               <button
-                onClick={() => setCurrentColorPair(index)}
+                onClick={() => setColorPair(index)}
                 className={`${currentColorPair === index ? "active" : ""}`}
               >
                 {currentColorPair === index ? "Selected" : "Select"}
